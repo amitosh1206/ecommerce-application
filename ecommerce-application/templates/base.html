@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Commerce App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">🛍️ E-Commerce</div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/products">Products</a>
+                <a href="/cart">Cart 🛒</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>© 2025 E-Commerce App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
