@@ -2,25 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>E-Commerce App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>E-Commerce</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
     <header>
-        <div class="container nav">
-            <div class="logo">🛍️ E-Commerce</div>
+        <div class="nav-container">
+            <div class="logo">🛍️ MyShop</div>
             <nav>
                 <a href="/">Home</a>
                 <a href="/products">Products</a>
                 <a href="/cart">Cart 🛒</a>
+                {% if session.get('user') %}
+                    <a href="/change_password">Change Password</a>
+                    <a href="/logout">Logout ({{ session['user'] }})</a>
+                {% else %}
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                {% endif %}
             </nav>
         </div>
     </header>
-    <main class="container">
+
+    <main class="content">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for msg in messages %}
+                        <li>{{ msg }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
     </main>
+
     <footer>
-        <p>© 2025 E-Commerce App. All rights reserved.</p>
+        <p>&copy; 2025 E-Commerce App</p>
     </footer>
 </body>
 </html>
